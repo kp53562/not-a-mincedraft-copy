@@ -1,3 +1,4 @@
+//apparently this does a lot more than just rendering, and something is borken
 const blocks = {
   air: {},
   grass: {
