@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <style>
-      #funbutton {
+      #singleplayerbutton {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -25,7 +25,7 @@
     </style>
   </head>
   <body>
-    <button id="funbutton" onclick="window.location.href=window.location.href+'penworld/'">Singleplayer</button>
+    <button id="singleplayerbutton" onclick="window.location.href=window.location.href+'penworld/'">Singleplayer</button>
     <!--<div class="new">
       <textarea placeholder="Level code here"></textarea>
       <button id="close">Cancel</button>
@@ -77,7 +77,7 @@
     </div>
     <div class="level" style="height: 0px;width: 0px;margin-top: 30px;">
     </div>
-    <p id="message" style="display: none;"></p>
+    <p id="message" style="display: none;"></p>-->
     <div id="tools">
         <a href="maker/" id="editer"><i class="material-icons">mode_edit</i></a><i class="material-icons dropdown">add_box<ul>
           <li class="dropheader"><strong>Play...</strong></li>
@@ -108,7 +108,7 @@
           <li onclick="setBlock(0,-40,'m');render();pus++"><i class="material-icons">attach_money</i> midas' touch</li>
           <li onclick="setBlock(0,-40,'t');render();pus++"><i class="material-icons">swap_horiz</i> transparent block</li>
           <li onclick="setBlock(0,-40,'C');render();pus++"><i class="material-icons">beenhere</i> checkpoint</li>
-          <li onclick="setBlock(0,-40,'h');render();"><img src="icons/sheep.jpg"/> THE SHEEP</li>
+          <li onclick="setBlock(0,-40,'h');render();"><img src="icons/sheep.jpg"/> THE SHEEP</li><!--
         </ul></i><i class="material-icons" id="joystick">videogame_asset</i><i class="material-icons" onclick="document.querySelector('.newtext').style.display='block';" id="helptext">help</i><i class="material-icons dropdown disabled">share<ul>
           <li class="dropheader"><strong>Sharing and stuff</strong></li>
           <li><a href="explore/submit.html">publish level</a></li>
