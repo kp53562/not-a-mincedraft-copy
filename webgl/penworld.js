@@ -497,6 +497,8 @@ let currentBlock = 'carved-darkstone'
 let selectedBlock = null
 let nextDestroy = 0
 let nextPlace = 0
+var fallingTime = 0; // adding gravity, in collision function, check for both canjump and this
+var canJump = true;
 function render () {
   const now = Date.now()
   const elapsedTime = (now - lastTime) / 1000
@@ -523,6 +525,7 @@ function render () {
     const playerCentre = position.clone().set({
       y: position.y - EYE_HEIGHT + PLAYER_HEIGHT / 2
     })
+    //if (playerCentre.y < (amount)) window.reload();
     collide(playerCentre, velocity, 'y', PLAYER_HEIGHT / 2, 'x', PLAYER_RADIUS, 'z', PLAYER_RADIUS, isCollidable)
     collide(playerCentre, velocity, 'x', PLAYER_RADIUS, 'y', PLAYER_HEIGHT / 2, 'z', PLAYER_RADIUS, isCollidable)
     collide(playerCentre, velocity, 'z', PLAYER_RADIUS, 'y', PLAYER_HEIGHT / 2, 'x', PLAYER_RADIUS, isCollidable)
