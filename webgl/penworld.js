@@ -1,4 +1,4 @@
-//apparently this does a lot more than just rendering, and something is borken
+// make selectable items, and remove flying by adding gravity
 const blocks = {
   air: {},
   grass: {
