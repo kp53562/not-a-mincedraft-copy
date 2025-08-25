@@ -427,8 +427,8 @@ textureAtlasPromise.then(createTexture)
 
     // TEMP "world gen"
     for (let y = 0; y < 8; y++) {
-      for (let x = 0; x < CHUNK_SIZE; x++) {
-        for (let z = 0; z < CHUNK_SIZE; z++) {
+      for (let x = 0; x < CHUNK_SIZE*2; x++) {
+        for (let z = 0; z < CHUNK_SIZE*2; z++) {
           subchunk.setBlock(new Vector3(x, y, z), new Block(y < 4 ? 'stone' : y < 7 ? 'dirt' : 'grass'))
         }
       }
