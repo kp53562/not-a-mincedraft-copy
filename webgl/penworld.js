@@ -170,7 +170,7 @@ class Block {
   }
 }
 
-const CHUNK_SIZE = 24
+const CHUNK_SIZE = 20
 
 class Subchunk {
   constructor (pos) {
@@ -531,7 +531,7 @@ function render () {
     const playerCentre = position.clone().set({
       y: position.y - EYE_HEIGHT + PLAYER_HEIGHT / 2
     })
-    if (playerCentre.y < (-10)) window.reload();
+    if (playerCentre.y < (-10)) window.location.href=window.location.href+"/";
     collide(playerCentre, velocity, 'y', PLAYER_HEIGHT / 2, 'x', PLAYER_RADIUS, 'z', PLAYER_RADIUS, isCollidable)
     collide(playerCentre, velocity, 'x', PLAYER_RADIUS, 'y', PLAYER_HEIGHT / 2, 'z', PLAYER_RADIUS, isCollidable)
     collide(playerCentre, velocity, 'z', PLAYER_RADIUS, 'y', PLAYER_HEIGHT / 2, 'x', PLAYER_RADIUS, isCollidable)
@@ -549,7 +549,7 @@ function render () {
     const { block: blockPos, from } = raycastCollision
     if (keys.mouse1 && now > nextDestroy) {
       Subchunk.setGlobalBlock(blockPos, null)
-      nextDestroy = now + 100
+      nextDestroy = now + 50 //todo: FIND WHICH BLOCK THE PLAYER IS LOOKING AT, IF IT IS SOMETHING "STRONG", ADD A BREAK DELAY
     }
     if (keys.mouse3 && now > nextPlace) {
       if (from === 'x') {
@@ -560,6 +560,9 @@ function render () {
         Subchunk.setGlobalBlock(blockPos.clone().add({ z: -Math.sign(raycastDir.z) }), new Block(currentBlock))
       }
       nextPlace = now + 150
+    }
+    if (keys.mouse2) {
+      currentBlock = selectedBlock;
     }
     const block = Subchunk.getGlobalBlock(blockPos)
     if (!block && selectedBlock) {
