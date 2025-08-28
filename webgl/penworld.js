@@ -531,7 +531,7 @@ function render () {
     const playerCentre = position.clone().set({
       y: position.y - EYE_HEIGHT + PLAYER_HEIGHT / 2
     })
-    //if (playerCentre.y < (amount)) window.reload();
+    if (playerCentre.y < (-10)) window.reload();
     collide(playerCentre, velocity, 'y', PLAYER_HEIGHT / 2, 'x', PLAYER_RADIUS, 'z', PLAYER_RADIUS, isCollidable)
     collide(playerCentre, velocity, 'x', PLAYER_RADIUS, 'y', PLAYER_HEIGHT / 2, 'z', PLAYER_RADIUS, isCollidable)
     collide(playerCentre, velocity, 'z', PLAYER_RADIUS, 'y', PLAYER_HEIGHT / 2, 'x', PLAYER_RADIUS, isCollidable)
