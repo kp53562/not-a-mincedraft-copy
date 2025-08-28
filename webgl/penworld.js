@@ -170,7 +170,7 @@ class Block {
   }
 }
 
-const CHUNK_SIZE = 16
+const CHUNK_SIZE = 32
 
 class Subchunk {
   constructor (pos) {
