@@ -37,7 +37,7 @@ const blocks = {
     translucent: true
   },
   cobblestone: {
-    texture: './textures/stone.png',
+    texture: './textures/cobblestone.png',
     solid: true,
     selectable: true,
     collidable: true
@@ -499,7 +499,7 @@ const isCollidable = pos => {
 }
 
 let lastTime = Date.now()
-let currentBlock = 'carved-darkstone'
+let currentBlock = 'cobblestone'
 let selectedBlock = null
 let nextDestroy = 0
 let nextPlace = 0
