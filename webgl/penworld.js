@@ -551,7 +551,7 @@ function render () {
     const { block: blockPos, from } = raycastCollision
     if (keys.mouse1 && now > nextDestroy) {
       Subchunk.setGlobalBlock(blockPos, null)
-      nextDestroy = now + 75 //todo: FIND WHICH BLOCK THE PLAYER IS LOOKING AT, IF IT IS SOMETHING "STRONG", ADD A BREAK DELAY
+      nextDestroy = now + 100 //todo: FIND WHICH BLOCK THE PLAYER IS LOOKING AT, IF IT IS SOMETHING "STRONG", ADD A BREAK DELAY
     }
     if (keys.mouse3 && now > nextPlace) {
       if (from === 'x') {
