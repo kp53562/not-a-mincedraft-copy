@@ -541,15 +541,17 @@ function render () {
   const raycastDir = new Vector3(0, 0, -1)
     .rotateAboutGlobalX(rotation.vertical)
     .rotateAboutGlobalY(rotation.lateral)
+  var sblock = currentBlock;
   const raycastCollision = raycast(position, raycastDir, pos => {
     const block = Subchunk.getGlobalBlock(pos)
+    sblock = Subchunk.getGlobalBlock(pos);
     return block && block.characteristics().selectable
-  }, 7)
+  }, 7) //second param is block selection distance
   if (raycastCollision) {
     const { block: blockPos, from } = raycastCollision
     if (keys.mouse1 && now > nextDestroy) {
       Subchunk.setGlobalBlock(blockPos, null)
-      nextDestroy = now + 50 //todo: FIND WHICH BLOCK THE PLAYER IS LOOKING AT, IF IT IS SOMETHING "STRONG", ADD A BREAK DELAY
+      nextDestroy = now + 75 //todo: FIND WHICH BLOCK THE PLAYER IS LOOKING AT, IF IT IS SOMETHING "STRONG", ADD A BREAK DELAY
     }
     if (keys.mouse3 && now > nextPlace) {
       if (from === 'x') {
@@ -559,10 +561,10 @@ function render () {
       } else if (from === 'z') {
         Subchunk.setGlobalBlock(blockPos.clone().add({ z: -Math.sign(raycastDir.z) }), new Block(currentBlock))
       }
-      nextPlace = now + 150
+      nextPlace = now + 125
     }
-    if (keys.mouse2) {
-      currentBlock = selectedBlock;
+    if (keys.f) {
+      currentBlock = sblock;
     }
     const block = Subchunk.getGlobalBlock(blockPos)
     if (!block && selectedBlock) {
