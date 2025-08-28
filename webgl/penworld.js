@@ -35,6 +35,12 @@ const blocks = {
   water: {
     texture: './textures/water.png',
     translucent: true
+  },
+  cobblestone: {
+    texture: './textures/stone.png',
+    solid: true,
+    selectable: true,
+    collidable: true
   }
 }
 const textures = {}
@@ -433,7 +439,7 @@ textureAtlasPromise.then(createTexture)
         }
       }
     }
-    subchunk.setBlock(new Vector3(3, 7, 3), new Block('carved_darkstone'))
+    subchunk.setBlock(new Vector3(3, 7, 3), new Block('carved-darkstone'))
     subchunk.setBlock(new Vector3(3, 7, 4), new Block('water'))
 
     render()
