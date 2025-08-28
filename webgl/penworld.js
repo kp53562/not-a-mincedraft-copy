@@ -170,7 +170,7 @@ class Block {
   }
 }
 
-const CHUNK_SIZE = 32
+const CHUNK_SIZE = 24
 
 class Subchunk {
   constructor (pos) {
@@ -432,10 +432,10 @@ textureAtlasPromise.then(createTexture)
     textureAtlas = texture
 
     // TEMP "world gen"
-    for (let y = 0; y < 8; y++) {
+    for (let y = 0; y < 10; y++) {
       for (let x = 0; x < CHUNK_SIZE; x++) {
         for (let z = 0; z < CHUNK_SIZE; z++) {
-          subchunk.setBlock(new Vector3(x, y, z), new Block(y==8 ? 'cobblestone' : y < 4 ? 'stone' : y < 7 ? 'dirt' : 'grass'))
+          subchunk.setBlock(new Vector3(x, y, z), new Block(y<=9 ? 'cobblestone' : y < 4 ? 'stone' : y < 7 ? 'dirt' : 'grass'))
         }
       }
     }
