@@ -523,9 +523,9 @@ function render () {
       velocity.y += elapsedTime * speed
     }
     if (fallingTime > 1) {
-      alert(String(-1.9*(fallingTime**2)))
+      //alert(String(-1.9*(fallingTime**2)))
       velocity.y += (-1.9*(fallingTime**2));
-      alert(String(velocity.y))
+      //alert(String(velocity.y))
     }
     const movement = new Vector2()
     if (keys.a) movement.add({x: -1})
