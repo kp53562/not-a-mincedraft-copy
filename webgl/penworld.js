@@ -369,7 +369,7 @@ function collide (pos, velocity, comp, size, aComp, aSize, bComp, bSize, onColli
   const maxA = Math.ceil(pos[aComp] + aSize - Number.EPSILON)
   const minB = Math.floor(pos[bComp] - bSize + Number.EPSILON)
   const maxB = Math.ceil(pos[bComp] + bSize - Number.EPSILON)
-//todo: when hitting a block from the bottom, reset falldistance/falltime
+//todo: when hitting a block from the top, reset falldistance/falltime
   const stop = Math.abs(velocity[comp])
   const initPos = velocity[comp] > 0 ? pos[comp] + size : pos[comp] - size
   let val = Math.round(initPos)
@@ -385,6 +385,7 @@ function collide (pos, velocity, comp, size, aComp, aSize, bComp, bSize, onColli
       for (let b = minB; b < maxB; b++) {
         block.set({ [bComp]: b })
         if (onCollide(block)) {
+          fallingTime = 0;
           if (keys.r) {
             console.log(val, initPos, val - initPos, pos[comp], (pos[comp] + val - initPos) - size)
           }
@@ -504,11 +505,14 @@ let selectedBlock = null
 let nextDestroy = 0
 let nextPlace = 0
 var fallingTime = 0; // adding gravity, in collision function, check for both canjump and this
-var canJump = true;
+//var canJump = true; //this might not be needed, if gravity works correctly, the player will fall no matter how high they try to jump
+
+//you can tell what i'm adding just by looking if there are semicolons or not XD
 function render () {
   const now = Date.now()
   const elapsedTime = (now - lastTime) / 1000
-  lastTime = now
+  lastTime = now;
+  fallingTime += elapsedTime;
 
   if (elapsedTime < 0.1) {
     const velocity = new Vector3()
@@ -518,6 +522,7 @@ function render () {
     if (keys[' ']) {
       velocity.y += elapsedTime * speed
     }
+    velocity.y -= ((-4.9*(fallingTime**2)) + (velocity.y));
     const movement = new Vector2()
     if (keys.a) movement.add({x: -1})
     if (keys.d) movement.add({x: 1})
@@ -531,7 +536,15 @@ function render () {
     const playerCentre = position.clone().set({
       y: position.y - EYE_HEIGHT + PLAYER_HEIGHT / 2
     })
-    if (playerCentre.y < (-10)) window.location.href=window.location.href+"/";
+    if (playerCentre.y < (-10)) {
+      alert("You died!");
+      position.set({
+        x: 3,
+        y: 8,
+        z: 4
+      });
+      //window.location.href=window.location.href+"/";
+    }
     collide(playerCentre, velocity, 'y', PLAYER_HEIGHT / 2, 'x', PLAYER_RADIUS, 'z', PLAYER_RADIUS, isCollidable)
     collide(playerCentre, velocity, 'x', PLAYER_RADIUS, 'y', PLAYER_HEIGHT / 2, 'z', PLAYER_RADIUS, isCollidable)
     collide(playerCentre, velocity, 'z', PLAYER_RADIUS, 'y', PLAYER_HEIGHT / 2, 'x', PLAYER_RADIUS, isCollidable)
