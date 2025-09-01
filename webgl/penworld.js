@@ -538,7 +538,7 @@ function render () {
     const playerCentre = position.clone().set({
       y: position.y - EYE_HEIGHT + PLAYER_HEIGHT / 2
     })
-    if (playerCentre.y < (-10)) {
+    if (playerCentre.y < (-10) || playerCentre.y > (256)) {
       alert("You died!");
       position.set({
         x: 3,
