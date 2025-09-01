@@ -512,9 +512,9 @@ function render () {
   const now = Date.now()
   const elapsedTime = (now - lastTime) / 1000
   lastTime = now;
-  fallingTime += elapsedTime;
 
   if (elapsedTime < 0.1) {
+  fallingTime += elapsedTime;
     const velocity = new Vector3()
     if (keys.shift) {
       velocity.y -= elapsedTime * speed
@@ -522,7 +522,9 @@ function render () {
     if (keys[' ']) {
       velocity.y += elapsedTime * speed
     }
-    velocity.y -= ((-4.9*(fallingTime**2)) + (velocity.y));
+    if (fallingTime > 0.8) {
+    velocity.y -= ((-1.9*(fallingTime**2)) + (velocity.y));
+    }
     const movement = new Vector2()
     if (keys.a) movement.add({x: -1})
     if (keys.d) movement.add({x: 1})
