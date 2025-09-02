@@ -587,7 +587,7 @@ function render () {
           sblockIndex = (Object.keys(blocks)).length-1;
         currentBlock = (Object.keys(blocks))[sblockIndex];
         document.getElementById("currentlySelectedBlock").innerHTML = "Selected block(use f or g): " + currentBlock;
-        switchSelectedBlockDelay = 200;
+        switchSelectedBlockDelay = 0.2;
       }
       if (keys.g) {
         sblockIndex++;
@@ -595,7 +595,7 @@ function render () {
           sblockIndex=0;
         currentBlock = (Object.keys(blocks))[sblockIndex];
         document.getElementById("currentlySelectedBlock").innerHTML = "Selected block(use f or g): " + currentBlock;
-        switchSelectedBlockDelay = 200;
+        switchSelectedBlockDelay = 0.2;
       }
     }
     const block = Subchunk.getGlobalBlock(blockPos)
