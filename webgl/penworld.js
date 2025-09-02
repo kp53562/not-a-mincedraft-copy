@@ -1,4 +1,4 @@
-// make selectable items, and remove flying by adding gravity
+// todo: add more blocks, and improve world generation
 const blocks = {
   air: {},
   grass: {
