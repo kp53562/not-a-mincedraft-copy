@@ -507,6 +507,7 @@ let nextPlace = 0
 var fallingTime = 0; // adding gravity, in collision function, check for both canjump and this
 //var canJump = true; //this might not be needed, if gravity works correctly, the player will fall no matter how high they try to jump
 
+var sblockIndex = 0;
 //you can tell what i'm adding just by looking if there are semicolons or not XD
 function render () {
   const now = Date.now()
@@ -554,7 +555,6 @@ function render () {
   const raycastDir = new Vector3(0, 0, -1)
     .rotateAboutGlobalX(rotation.vertical)
     .rotateAboutGlobalY(rotation.lateral)
-  var sblock = currentBlock;
   const raycastCollision = raycast(position, raycastDir, pos => {
     const block = Subchunk.getGlobalBlock(pos)
     sblock = Subchunk.getGlobalBlock(pos);
@@ -577,7 +577,14 @@ function render () {
       nextPlace = now + 125
     }
     if (keys.f) {
-      currentBlock = sblock;
+      sblockIndex--;
+      currentBlock = (Object.keys(blocks))[sblockIndex];
+      document.getElementById("currentlySelectedBlock").innerHTML = "Selected block(use f or g): " + currentBlock;
+    }
+    if (keys.g) {
+      sblockIndex++;
+      currentBlock = (Object.keys(blocks))[sblockIndex];
+      document.getElementById("currentlySelectedBlock").innerHTML = "Selected block(use f or g): " + currentBlock;
     }
     const block = Subchunk.getGlobalBlock(blockPos)
     if (!block && selectedBlock) {
