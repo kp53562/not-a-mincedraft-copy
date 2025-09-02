@@ -433,13 +433,23 @@ textureAtlasPromise.then(createTexture)
     textureAtlas = texture
 
     // TEMP "world gen"
-    for (let y = 0; y < 8; y++) {
-      for (let x = 0; x < CHUNK_SIZE; x++) {
-        for (let z = 0; z < CHUNK_SIZE; z++) {
-          subchunk.setBlock(new Vector3(x, y, z), new Block(y==0 ? 'cobblestone' : y < 4 ? 'stone' : y < 7 ? 'dirt' : 'grass'))
+    for (let i = 0; i <= 2; i++){
+      const moresubchunks = new Subchunk(i,0,0);
+      for (let y = 0; y < 8; y++) {
+        for (let x = 0; x < CHUNK_SIZE; x++) {
+          for (let z = 0; z < CHUNK_SIZE; z++) {
+            subchunk.setBlock(new Vector3(x, y, z), new Block(y==0 ? 'cobblestone' : y < 4 ? 'stone' : y < 7 ? 'dirt' : 'grass'))
+          }
         }
       }
     }
+    for (let y = 0; y < 8; y++) {
+        for (let x = 0; x < CHUNK_SIZE; x++) {
+          for (let z = 0; z < CHUNK_SIZE; z++) {
+            subchunk.setBlock(new Vector3(x, y, z), new Block(y==0 ? 'cobblestone' : y < 4 ? 'stone' : y < 7 ? 'dirt' : 'grass'))
+          }
+        }
+      }
     subchunk.setBlock(new Vector3(3, 7, 3), new Block('carved-darkstone'))
     subchunk.setBlock(new Vector3(3, 7, 4), new Block('water'))
 
