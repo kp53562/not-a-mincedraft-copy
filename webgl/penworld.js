@@ -508,6 +508,7 @@ var fallingTime = 0; // adding gravity, in collision function, check for both ca
 //var canJump = true; //this might not be needed, if gravity works correctly, the player will fall no matter how high they try to jump
 
 var sblockIndex = 0;
+var switchSelectedBlockDelay = 0;
 //you can tell what i'm adding just by looking if there are semicolons or not XD
 function render () {
   const now = Date.now()
@@ -515,6 +516,9 @@ function render () {
   lastTime = now;
 
   if (elapsedTime < 0.1) {
+    if (!(switchSelectedBlockDelay <= 0)) {
+      switchSelectedBlockDelay -= elapsedTime;
+    }
   fallingTime += elapsedTime;
     const velocity = new Vector3()
     if (keys.shift) {
@@ -576,15 +580,23 @@ function render () {
       }
       nextPlace = now + 125
     }
-    if (keys.f) {
-      sblockIndex--;
-      currentBlock = (Object.keys(blocks))[sblockIndex];
-      document.getElementById("currentlySelectedBlock").innerHTML = "Selected block(use f or g): " + currentBlock;
-    }
-    if (keys.g) {
-      sblockIndex++;
-      currentBlock = (Object.keys(blocks))[sblockIndex];
-      document.getElementById("currentlySelectedBlock").innerHTML = "Selected block(use f or g): " + currentBlock;
+    if (switchSelectedBlockDelay <=0 ){ //switching selected block
+      if (keys.f) {
+        sblockIndex--;
+        if (sblockIndex < 0)
+          sblockIndex = (Object.keys(blocks)).length-1;
+        currentBlock = (Object.keys(blocks))[sblockIndex];
+        document.getElementById("currentlySelectedBlock").innerHTML = "Selected block(use f or g): " + currentBlock;
+        switchSelectedBlockDelay = 200;
+      }
+      if (keys.g) {
+        sblockIndex++;
+        if (sblockIndex >= ((Object.keys(blocks)).length-1))
+          sblockIndex=0;
+        currentBlock = (Object.keys(blocks))[sblockIndex];
+        document.getElementById("currentlySelectedBlock").innerHTML = "Selected block(use f or g): " + currentBlock;
+        switchSelectedBlockDelay = 200;
+      }
     }
     const block = Subchunk.getGlobalBlock(blockPos)
     if (!block && selectedBlock) {
