@@ -591,7 +591,7 @@ function render () {
       }
       if (keys.g) {
         sblockIndex++;
-        if (sblockIndex >= ((Object.keys(blocks)).length-1))
+        if (sblockIndex >= ((Object.keys(blocks)).length))
           sblockIndex=0;
         currentBlock = (Object.keys(blocks))[sblockIndex];
         document.getElementById("currentlySelectedBlock").innerHTML = "Selected block(use f or g): " + currentBlock;
