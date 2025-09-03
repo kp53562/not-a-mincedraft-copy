@@ -44,7 +44,6 @@ const blocks = {
   }, //todo: if block has the solid tag, it cannot be replaced when placing block
   glass: {
     texture: './textures/glass.png',
-    solid: true,
     selectable: true,
     collidable: true,
     translucent: true
