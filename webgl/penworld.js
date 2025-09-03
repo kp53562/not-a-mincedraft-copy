@@ -1,4 +1,4 @@
-// todo: add more blocks, and improve world generation. also add block updates.
+// todo: add more blocks, and improve world generation. also add block updates (for water).
 const blocks = {
   air: {},
   grass: {
