@@ -544,7 +544,7 @@ function render () {
     if (keys.shift) {
       velocity.y -= elapsedTime * speed
     }
-    if (keys[' '] && fallingTime<0.5) {
+    if (keys[' '] && fallingTime<0.8) {
       velocity.y += elapsedTime * (speed^speed)
     }
     velocity.y += (-0.9*(fallingTime**2));
