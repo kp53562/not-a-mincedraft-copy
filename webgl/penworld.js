@@ -507,12 +507,12 @@ document.addEventListener('mouseup', e => {
 })
 
 let speed = 7
-/*document.addEventListener('wheel', e => {
+  document.addEventListener('wheel', e => {
   if (mouseLocked) {
     speed -= e.deltaY / 100
     if (speed < 0) speed = 0
   }
-})*/
+})
 
 const isCollidable = pos => {
   const block = Subchunk.getGlobalBlock(pos)
@@ -545,8 +545,10 @@ function render () {
       velocity.y -= elapsedTime * speed
     }
     if (keys[' ']) {
-      velocity.y += elapsedTime * 400
+      velocity.y += elapsedTime * speed
     }
+    if (keys.m) 
+      alert(String(speed));
     velocity.y += (-0.9*(fallingTime**2));
     const movement = new Vector2()
     if (keys.a) movement.add({x: -1})
@@ -592,6 +594,8 @@ function render () {
     }
     if (keys.mouse3 && now > nextPlace) {
       if (from === 'x') {
+        //below statement and statements like it throw errors when there is no block, and we want there to not be a block at...
+        // ...the specified location when placing.
         //if (! Subchunk.getGlobalBlock(blockPos.clone().add({ x: -Math.sign(raycastDir.x) })).characteristics().solid)
           Subchunk.setGlobalBlock(blockPos.clone().add({ x: -Math.sign(raycastDir.x) }), new Block(currentBlock))
       } else if (from === 'y') {
