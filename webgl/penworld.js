@@ -593,13 +593,13 @@ function render () {
     }
     if (keys.mouse3 && now > nextPlace) {
       if (from === 'x') {
-        if (! Subchunk.getGlobalBlock(blockPos.clone().add({ x: -Math.sign(raycastDir.x) })).characteristics().solid)
+        //if (! Subchunk.getGlobalBlock(blockPos.clone().add({ x: -Math.sign(raycastDir.x) })).characteristics().solid)
           Subchunk.setGlobalBlock(blockPos.clone().add({ x: -Math.sign(raycastDir.x) }), new Block(currentBlock))
       } else if (from === 'y') {
-        if (! Subchunk.getGlobalBlock(blockPos.clone().add({ y: -Math.sign(raycastDir.y) })).characteristics().solid)
+        //if (! Subchunk.getGlobalBlock(blockPos.clone().add({ y: -Math.sign(raycastDir.y) })).characteristics().solid)
           Subchunk.setGlobalBlock(blockPos.clone().add({ y: -Math.sign(raycastDir.y) }), new Block(currentBlock))
       } else if (from === 'z') {
-        if (! Subchunk.getGlobalBlock(blockPos.clone().add({ z: -Math.sign(raycastDir.z) })).characteristics().solid)
+        //if (! Subchunk.getGlobalBlock(blockPos.clone().add({ z: -Math.sign(raycastDir.z) })).characteristics().solid)
           Subchunk.setGlobalBlock(blockPos.clone().add({ z: -Math.sign(raycastDir.z) }), new Block(currentBlock))
       }
       nextPlace = now + 125
