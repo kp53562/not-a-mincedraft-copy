@@ -395,7 +395,7 @@ function collide (pos, velocity, comp, size, aComp, aSize, bComp, bSize, onColli
       for (let b = minB; b < maxB; b++) {
         block.set({ [bComp]: b })
         if (onCollide(block)) {
-          fallingTime = 0.02;
+          fallingTime = 0.1;
           if (keys.r) {
             console.log(val, initPos, val - initPos, pos[comp], (pos[comp] + val - initPos) - size)
           }
