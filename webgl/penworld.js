@@ -507,12 +507,12 @@ document.addEventListener('mouseup', e => {
 })
 
 let speed = 7
-  document.addEventListener('wheel', e => {
+  /*document.addEventListener('wheel', e => {
   if (mouseLocked) {
     speed -= e.deltaY / 100
     if (speed < 0) speed = 0
   }
-})
+})*/
 
 const isCollidable = pos => {
   const block = Subchunk.getGlobalBlock(pos)
@@ -545,10 +545,8 @@ function render () {
       velocity.y -= elapsedTime * speed
     }
     if (keys[' ']) {
-      velocity.y += elapsedTime * speed
+      velocity.y += elapsedTime * 8.8
     }
-    if (keys.m) 
-      alert(String(speed));
     velocity.y += (-0.9*(fallingTime**2));
     const movement = new Vector2()
     if (keys.a) movement.add({x: -1})
