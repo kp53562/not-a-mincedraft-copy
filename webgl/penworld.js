@@ -395,7 +395,7 @@ function collide (pos, velocity, comp, size, aComp, aSize, bComp, bSize, onColli
       for (let b = minB; b < maxB; b++) {
         block.set({ [bComp]: b })
         if (onCollide(block)) {
-          fallingTime = 0;
+          fallingTime = 0.02;
           if (keys.r) {
             console.log(val, initPos, val - initPos, pos[comp], (pos[comp] + val - initPos) - size)
           }
@@ -545,7 +545,7 @@ function render () {
       velocity.y -= elapsedTime * speed
     }
     if (keys[' '] && fallingTime<0.3) {
-      velocity.y += elapsedTime * (speed^2)
+      velocity.y += elapsedTime * ((speed^2)/2)
     }
     velocity.y += (-0.9*(fallingTime**2));
     const movement = new Vector2()
