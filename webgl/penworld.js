@@ -544,8 +544,8 @@ function render () {
     if (keys.shift) {
       velocity.y -= elapsedTime * speed
     }
-    if (keys[' '] && fallingTime<0.3) {
-      velocity.y += elapsedTime * ((speed^2)/2)
+    if (keys[' '] && fallingTime<0.4) {
+      velocity.y += elapsedTime * ((speed^2)/1.2)
     }
     velocity.y += (-0.9*(fallingTime**2));
     const movement = new Vector2()
