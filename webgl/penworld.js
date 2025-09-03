@@ -524,6 +524,7 @@ let currentBlock = 'cobblestone'
 let selectedBlock = null
 let nextDestroy = 0
 let nextPlace = 0
+var jumpPower = 9.8;
 var fallingTime = 0; // adding gravity, in collision function, check for both canjump and this
 //var canJump = true; //this might not be needed, if gravity works correctly, the player will fall no matter how high they try to jump
 //todo: add prev velocity, new velocity is added onto (previous velocity/2)
@@ -545,7 +546,7 @@ function render () {
       velocity.y -= elapsedTime * speed
     }
     if (keys[' ']) {
-      velocity.y += elapsedTime * 8.8
+      velocity.y += elapsedTime * jumpPower;
     }
     velocity.y += (-0.9*(fallingTime**2));
     const movement = new Vector2()
