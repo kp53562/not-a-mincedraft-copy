@@ -41,6 +41,13 @@ const blocks = {
     solid: true,
     selectable: true,
     collidable: true
+  }, //todo: if block has the solid tag, it cannot be replaced when placing block
+  glass: {
+    texture: './textures/glass.png',
+    solid: true,
+    selectable: true,
+    collidable: true,
+    translucent: true
   }
 }
 const textures = {}
@@ -112,6 +119,10 @@ class Block {
     this.faces = {}
   }
 
+  getType() {
+    return this.type;
+  }
+  
   characteristics () {
     return blocks[this.type] || {}
   }
@@ -571,7 +582,7 @@ function render () {
     .rotateAboutGlobalY(rotation.lateral)
   const raycastCollision = raycast(position, raycastDir, pos => {
     const block = Subchunk.getGlobalBlock(pos)
-    sblock = Subchunk.getGlobalBlock(pos);
+    //sblock = Subchunk.getGlobalBlock(pos);
     return block && block.characteristics().selectable
   }, 7) //second param is block selection distance
   if (raycastCollision) {
@@ -582,11 +593,14 @@ function render () {
     }
     if (keys.mouse3 && now > nextPlace) {
       if (from === 'x') {
-        Subchunk.setGlobalBlock(blockPos.clone().add({ x: -Math.sign(raycastDir.x) }), new Block(currentBlock))
+        if (! Subchunk.getGlobalBlock(blockPos.clone().add({ x: -Math.sign(raycastDir.x) })).characteristics().solid)
+          Subchunk.setGlobalBlock(blockPos.clone().add({ x: -Math.sign(raycastDir.x) }), new Block(currentBlock))
       } else if (from === 'y') {
-        Subchunk.setGlobalBlock(blockPos.clone().add({ y: -Math.sign(raycastDir.y) }), new Block(currentBlock))
+        if (! Subchunk.getGlobalBlock(blockPos.clone().add({ y: -Math.sign(raycastDir.y) })).characteristics().solid)
+          Subchunk.setGlobalBlock(blockPos.clone().add({ y: -Math.sign(raycastDir.y) }), new Block(currentBlock))
       } else if (from === 'z') {
-        Subchunk.setGlobalBlock(blockPos.clone().add({ z: -Math.sign(raycastDir.z) }), new Block(currentBlock))
+        if (! Subchunk.getGlobalBlock(blockPos.clone().add({ z: -Math.sign(raycastDir.z) })).characteristics().solid)
+          Subchunk.setGlobalBlock(blockPos.clone().add({ z: -Math.sign(raycastDir.z) }), new Block(currentBlock))
       }
       nextPlace = now + 125
     }
