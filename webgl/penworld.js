@@ -1,4 +1,5 @@
 // todo: add more blocks, and improve world generation. also add block updates (for water).
+// more todo: patch "ziplining"
 const blocks = {
   air: {},
   grass: {
