@@ -545,7 +545,7 @@ function render () {
       velocity.y -= elapsedTime * speed
     }
     if (keys[' ']) {
-      velocity.y += elapsedTime * 500
+      velocity.y += elapsedTime * 400
     }
     velocity.y += (-0.9*(fallingTime**2));
     const movement = new Vector2()
