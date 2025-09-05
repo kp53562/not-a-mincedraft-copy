@@ -546,10 +546,10 @@ function render () {
     if (keys.shift) {
       velocity.y -= elapsedTime * speed
     }
-    if (keys[' '] && fallingTime < 0.6) {
+    if (keys[' '] && fallingTime < 0.4) { //jump code
       velocity.y += elapsedTime * jumpPower;
     }
-    velocity.y += (-0.9*(fallingTime**2));
+    velocity.y += (-0.88*(fallingTime**2));
     const movement = new Vector2()
     if (keys.a) movement.add({x: -1})
     if (keys.d) movement.add({x: 1})
