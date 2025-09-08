@@ -373,6 +373,9 @@ function raycast (from, dir, onCollide, maxDist) {
 }
 
 // Sets velocity vector
+// params: 
+// .. pos: 
+// .. velocity:
 function collide (pos, velocity, comp, size, aComp, aSize, bComp, bSize, onCollide) {
   if (velocity[comp] === 0) return null
 
@@ -381,7 +384,7 @@ function collide (pos, velocity, comp, size, aComp, aSize, bComp, bSize, onColli
   const minB = Math.floor(pos[bComp] - bSize + Number.EPSILON)
   const maxB = Math.ceil(pos[bComp] + bSize - Number.EPSILON)
 //todo: when hitting a block from the top, reset falldistance/falltime
-  const stop = Math.abs(velocity[comp])
+  const stop = Math.abs(velocity[comp]) //
   const initPos = velocity[comp] > 0 ? pos[comp] + size : pos[comp] - size
   let val = Math.round(initPos)
   if (keys.r) {
