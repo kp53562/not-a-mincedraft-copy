@@ -531,6 +531,7 @@ var fallingTime = 0; // adding gravity, in collision function, check for both ca
 //todo: add prev velocity, new velocity is added onto (previous velocity/2)
 var sblockIndex = 0;
 var switchSelectedBlockDelay = 0;
+const prevVelocity = new Vector3(0,0,0);
 //you can tell what i'm adding just by looking if there are semicolons or not XD
 function render () {
   const now = Date.now()
@@ -572,10 +573,16 @@ function render () {
       });
       //window.location.href=window.location.href+"/";
     }
+    velocity.add(new Vector3(prevVelocity.x/2,prevVelocity.y/2,prevVelocity.z/2));
     collide(playerCentre, velocity, 'y', PLAYER_HEIGHT / 2, 'x', PLAYER_RADIUS, 'z', PLAYER_RADIUS, isCollidable)
     collide(playerCentre, velocity, 'x', PLAYER_RADIUS, 'y', PLAYER_HEIGHT / 2, 'z', PLAYER_RADIUS, isCollidable)
     collide(playerCentre, velocity, 'z', PLAYER_RADIUS, 'y', PLAYER_HEIGHT / 2, 'x', PLAYER_RADIUS, isCollidable)
-    position.add(velocity)
+    position.add(velocity);
+    prevVelocity.set({
+      x: velocity.x,
+      y: velocity.y,
+      z: velocity.z
+    });
   }
 
   const raycastDir = new Vector3(0, 0, -1)
