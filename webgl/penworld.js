@@ -507,7 +507,7 @@ document.addEventListener('mouseup', e => {
   keys[`mouse${e.which}`] = false
 })
 
-let speed = 7
+let speed = 4
   /*document.addEventListener('wheel', e => {
   if (mouseLocked) {
     speed -= e.deltaY / 100
@@ -525,7 +525,7 @@ let currentBlock = 'cobblestone'
 let selectedBlock = null
 let nextDestroy = 0
 let nextPlace = 0
-var jumpPower = 9;
+var jumpPower = 8.7;
 var fallingTime = 0; // adding gravity, in collision function, check for both canjump and this
 //var canJump = true; //this might not be needed, if gravity works correctly, the player will fall no matter how high they try to jump
 //todo: add prev velocity, new velocity is added onto (previous velocity/2)
@@ -550,7 +550,7 @@ function render () {
     if (keys[' '] && fallingTime < 0.4) { //jump code
       velocity.y += elapsedTime * jumpPower;
     }
-    velocity.y += (-0.88*(fallingTime**2));
+    velocity.y += (-0.8*(fallingTime**2));
     const movement = new Vector2()
     if (keys.a) movement.add({x: -1})
     if (keys.d) movement.add({x: 1})
@@ -573,15 +573,15 @@ function render () {
       });
       //window.location.href=window.location.href+"/";
     }
-    velocity.add(new Vector3(prevVelocity.x/2,prevVelocity.y/2,prevVelocity.z/2));
+    velocity.add(prevVelocity);
     collide(playerCentre, velocity, 'y', PLAYER_HEIGHT / 2, 'x', PLAYER_RADIUS, 'z', PLAYER_RADIUS, isCollidable)
     collide(playerCentre, velocity, 'x', PLAYER_RADIUS, 'y', PLAYER_HEIGHT / 2, 'z', PLAYER_RADIUS, isCollidable)
     collide(playerCentre, velocity, 'z', PLAYER_RADIUS, 'y', PLAYER_HEIGHT / 2, 'x', PLAYER_RADIUS, isCollidable)
     position.add(velocity);
     prevVelocity.set({
-      x: velocity.x,
-      y: velocity.y,
-      z: velocity.z
+      x: velocity.x/2,
+      y: 0,
+      z: velocity.z/2
     });
   }
 
